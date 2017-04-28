@@ -79,19 +79,15 @@ function menu(){
 
 //Function to update the table by purchasing item
 function purchase(item, count){
-	console.log(item);
-	console.log(count);
-	sql= "SELECT item_id AS id, product_name AS Item, price AS Cost, stock_quantity AS Quantity, product_sales AS Profit FROM products WHERE ?";
+	sql= "SELECT item_id AS id, product_name AS Item, price AS Cost, stock_quantity AS Quantity, IFNULL(product_sales,0) AS Profit FROM products WHERE ?";
 	connection.query(sql,{item_id: item} ,function(err, ptable) {
 		if(err) throw err;
 		console.table(ptable);
 		var pay=count*ptable[0].Cost;
 		//determin profit
-			console.log(ptable[0].Profit);
 		if (typeof(ptable[0].Profit)===null){
 			profit=0;
 			profit=profit+pay;
-			console.log(profit);
 		}
 		else{
 			profit=ptable[0].Profit;

@@ -58,7 +58,7 @@ function supermenu(){
 
 //Function to view profit margin
 function salesreview() {
-	innerjoin="SELECT DISTINCT bamazon_db.departments.department_id, bamazon_db.departments.department_name, IFNULL(COUNT(bamazon_db.products.department_name),0) AS numberofitems, IFNULL(bamazon_db.departments.overheadcosts,0) AS totalcost, IFNULL(SUM(bamazon_db.products.product_sales),0) AS totalsales, IFNULL(SUM(bamazon_db.products.product_sales),0)-IFNULL(bamazon_db.departments.overheadcosts,0) AS profit FROM bamazon_db.departments LEFT JOIN bamazon_db.products ON bamazon_db.departments.department_name = bamazon_db.products.department_name GROUP BY bamazon_db.departments.department_name ORDER BY bamazon_db.departments.department_id;";
+	innerjoin="SELECT DISTINCT bamazon_db.departments.department_id, bamazon_db.departments.department_name, IFNULL(COUNT(bamazon_db.products.department_name),0) AS numberofitems, IFNULL(bamazon_db.departments.overheadcosts,0) AS totalcost, IFNULL(SUM(bamazon_db.products.product_sales),0) AS totalsales, IFNULL(SUM(bamazon_db.products.product_sales),0)-IFNULL(bamazon_db.departments.overheadcosts,0) AS totalprofit FROM bamazon_db.departments LEFT JOIN bamazon_db.products ON bamazon_db.departments.department_name = bamazon_db.products.department_name GROUP BY bamazon_db.departments.department_name ORDER BY bamazon_db.departments.department_id;";
 	connection.query(innerjoin, function(err, res) {
 		if(err) throw err;
 		console.table(res);
