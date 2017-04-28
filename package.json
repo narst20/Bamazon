@@ -1,0 +1,9 @@
+{
+  "name": "bamazon",
+  "description": "sql work",
+  "version": "1.0.0",
+  "engines": {
+    "node": "7.4.0",
+    "npm": "4.0.5"
+  }
+}
